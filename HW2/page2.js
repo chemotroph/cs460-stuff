@@ -1,11 +1,21 @@
 
+$(document).ready(function(){
+$("#submit").click(function(){
+  $("#whoops").hide();
+  generate();
+  $("#whoops").fadeIn(3000);
+});
+});
 
 
-document.getElementById("submit").addEventListener("click", generate);
+
 var count=0;
 var mines;
 var width;
 var height;
+
+
+
 function generate()
 {
 
@@ -88,7 +98,14 @@ function clicked(thisbutton)
     document.getElementById(thisbutton).innerHTML=findadjacent(thisbutton);      //mark as visited and display adjacent mines
   }
 
-    //a mine
+  if(mines[coords[0]][coords[1]]==1)    //IS A MINE
+  {
+    document.getElementById(thisbutton).style.backgroundColor="red";
+    document.getElementById(thisbutton).innerHTML="X";      //explode
+    document.getElementById("lose").innerHTML="YOU LOSE";      //explode
+
+
+  }
       //explodes, lose condition, css effects?
 
     //next to mines
