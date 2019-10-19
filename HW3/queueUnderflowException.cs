@@ -1,12 +1,15 @@
-public class QueueUnderflowException extends RuntimeException
+  using System;
+namespace lab3{
+public class QueueUnderflowException :Exception
 {
-  public QueueUnderflowException()
+  public QueueUnderflowException(): base()
   {
-    super();
+    
   }
 
-  public QueueUnderflowException(String message)
+  public QueueUnderflowException(String message): base(message)
   {
-    super(message);
+    
   }
+}
 }

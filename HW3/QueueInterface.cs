@@ -1,5 +1,6 @@
 using System;
-
+using lab3;
+namespace lab3{
 
 interface QueueInterface<T>     //an interface for a queue!
 {
@@ -7,4 +8,5 @@ interface QueueInterface<T>     //an interface for a queue!
         T pop();                //removes and returns the next item in the queue
         T peek();               //returns next elements in queue
         Boolean isEmpty();      //returns true is items are enqueued
+}
 }

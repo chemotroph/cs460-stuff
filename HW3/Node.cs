@@ -1,5 +1,6 @@
 using System;
 
+namespace lab3{
 public class Node<T>
 {
 private Node<T> next;
@@ -13,3 +14,4 @@ public Node(T val, Node<T> nextNode)
 }//end Node constructor
 
 }//end class
+}
