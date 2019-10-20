@@ -3,14 +3,14 @@ using System;
 namespace lab3{
 public class Node<T>
 {
-private Node<T> next;
-private T data;
+public Node<T> Next;
+public T Data;
 
 public Node(T val, Node<T> nextNode)
 {
-  data= val;
+  Data= val;
 
-  next=nextNode;
+  Next=nextNode;
 }//end Node constructor
 
 }//end class
