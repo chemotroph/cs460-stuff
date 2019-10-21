@@ -2,42 +2,53 @@ using System;
 using System.Text;
 using System.IO;
 
-
+//This class is designed to emulate the behavior of the java scanner class.
 namespace lab3{
 
 public class Scanner
 {
     private string input;
-    private int charIndex;
-    private char? currentChar;
+    static int charIndex;
+
 
     public Scanner(string inputFile)
     {
         this.input=File.ReadAllText(inputFile);
-        currentChar=input[0];
         charIndex=0;
-        Console.WriteLine(input);
+        //Console.WriteLine(input);
     }
 
     public string next()
     {
         string word="";
+
         
-        while(charIndex<input.Length&&currentChar!=' '&&currentChar!='\n')
+        
+        
+        while(charIndex<input.Length-1)     //WHILE THERE ARE STILL CHARACTERS IN THE INPUT DOCUMENT
         {
-            currentChar=input[charIndex];
-            charIndex++;
-            word+=currentChar;
+            
+            
+            
+            if(input[charIndex]==' '||input[charIndex]=='\n'||input[charIndex]==input.Length)   //check if the current character is a space or new line or if we are out of characters
+            {
+                Console.WriteLine(word);    //if the character is a space/newline/we are done
+                charIndex++;                //print the word
+                return word;                //increment character
+            }                               //return the word
+            word+=input[charIndex];         //append the character to the current word
+            charIndex++;                    //incriment character index
+            
         }
-        Console.WriteLine(charIndex);
-        return word;
+        return word;    //final word return
     }
 
     public bool hasNext()
     {
-        if(charIndex<input.Length)
+        if(charIndex<input.Length-1)
+            {//Console.WriteLine("Has NExt returned true!!");
             return true;
-        
+            }
         return false;
     }
     public void close()
