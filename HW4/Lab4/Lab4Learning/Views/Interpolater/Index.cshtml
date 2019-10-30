@@ -1,0 +1,55 @@
+﻿@{
+         ViewBag.Title="Interpolater";
+}
+@using System.Drawing;
+@model Lab4Learning.Models.GradientModel
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Index</title>
+</head>
+<body>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                @using(Html.BeginForm("Index", "Interpolater", FormMethod.Post))
+                {
+                    <div class="form-group">
+                    @Html.Label("startColor", "Start Color: ")
+                    @Html.TextBox("startColor", null, new {@class="form-control", type="string", Value="#000000"})
+                    <br></br>
+                    @Html.Label("endColor", "End Color: ")
+                    @Html.TextBox("endColor", null, new {@class="form-control", type="string", Value="#000000"})
+                    <br></br>
+                    @Html.Label("numColors", "Number of Colors: ")
+                    @Html.TextBox("numColors", null, new {@class="form-control", type="number", Value="1"})
+                    <button type: class="submit" class="btn btn-primary"> submit color</button>
+                    </div>
+                }
+                
+            </div>
+            
+            <div>
+                    @if(ViewBag.myGradient!=null)
+                    {foreach(Color x in ViewBag.myGradient)
+                    {
+                    <div style="background-color:@ColorTranslator.ToHtml(x);">
+                    @ColorTranslator.ToHtml(x)     
+                    </div>
+                    }}
+            </div>  
+        </div>
+        </div>
+                    
+
+</body>
+</html>
+

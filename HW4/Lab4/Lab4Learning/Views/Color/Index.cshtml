@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title="Request Information";
+}
+@using System.Web.Mvc.Html;
+@using      System.Drawing;
+
+<html>
+<head>
+    <title>Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+    
+   
+    
+    
+    @{
+    Color myColor=new Color();
+    if(Request.QueryString["red"]!=null)
+    {
+    int Red=Int32.Parse(Request.QueryString["red"]);
+        if(Red==null)
+            {
+                Red=0;
+            }
+    int Blue=Int32.Parse(Request.QueryString["blue"]);
+            if(Blue==null)
+            {
+                Blue=0;
+            }
+    
+    int Green=Int32.Parse(Request.QueryString["green"]);
+            if(Green==null)
+            {
+                Green=0;
+            }
+    
+    myColor=Color.FromArgb(Red,Green,Blue);
+    }
+    else
+    {
+            myColor=Color.FromArgb(0,0,0);
+    }
+    string color=ColorTranslator.ToHtml(myColor);
+    }
+    
+    <style>
+        .container
+        {
+        background-color: @color
+        }
+       
+    </style>
+    
+    
+<body>
+        
+        <div class="row"
+             <div class="col-md-2"></div>
+            <div class="col-md-2">
+                @using(Html.BeginForm("Index", "Color", FormMethod.Get))
+                {
+                    <div class="form-group">
+                    @Html.Label("red", "Red: ")
+                    @Html.TextBox("red", null, new {@class="form-control", type="number", min=0, max=255, Value="0"})
+                    @Html.Label("blue", "Blue: ")
+                    @Html.TextBox("blue", null, new {@class="form-control", type="number", min=0, max=255, Value="0"})
+                    @Html.Label("green", "Green: ")
+                    @Html.TextBox("green", null, new {@class="form-control", type="number", min=0, max=255, Value="0"})
+                    <button type: class="submit" class="btn btn-primary"> submit color</button>
+                    </div>
+                }
+            </div>
+       
+        </div>
+        <br>
+        </br>
+        <div id= "colorOutput" class="container">
+            Here is your color!
+            <br></br><br></br><br></br>
+        </div>
+        <br>@color</br>
+</body>
+</html>
+
