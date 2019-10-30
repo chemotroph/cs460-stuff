@@ -4,7 +4,16 @@
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
 </head>
+    
+    
 <body>
+        <nav class="navbar navbar-light bg-light">
+            <div>@Html.ActionLink("Home", "Index", "Home")</div>
+            <div>@Html.ActionLink("Request Information", "Index", "Color")</div>
+            <div>@Html.ActionLink("Interpolater", "Index", "Interpolater")</div>
+  <a class="navbar-brand" href="#">Homework 4</a>
+
+        </nav>
 	@RenderBody()
 </body>
 </html>
