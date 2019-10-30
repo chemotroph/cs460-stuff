@@ -41,8 +41,12 @@
                     @if(ViewBag.myGradient!=null)
                     {foreach(Color x in ViewBag.myGradient)
                     {
-                    <div style="background-color:@ColorTranslator.ToHtml(x);">
-                    @ColorTranslator.ToHtml(x)     
+                    
+                    <div class="row">
+                        <div class="col-md-4" style="padding-right:0px;">@ColorTranslator.ToHtml(x)</div>
+                        <div class="col-md-4"style="background-color:@ColorTranslator.ToHtml(x);height:30px;width:600px;padding-left:0px;">
+                                 
+                        </div>
                     </div>
                     }}
             </div>  
