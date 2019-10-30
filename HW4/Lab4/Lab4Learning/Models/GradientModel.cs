@@ -30,11 +30,14 @@ namespace Lab4Learning.Models
             double currents = start.s;
             double currentv = start.v;
 
-           
 
 
 
-            for (int i =0; i<numColors; i++)
+            gradient[0] = ColorFromHSV(currenth, currents, currentv);
+
+
+
+            for (int i =1; i<numColors; i++)
             {
                 currenth += dhue;
                 currents += dsat;
