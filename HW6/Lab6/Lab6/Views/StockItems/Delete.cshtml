@@ -1,0 +1,224 @@
+﻿@model Lab6.Models.StockItem
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StockItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Color.ColorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color.ColorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackageType.PackageTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackageType.PackageTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackageType1.PackageTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackageType1.PackageTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockItemHolding.BinLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockItemHolding.BinLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeadTimeDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeadTimeDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityPerOuter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityPerOuter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsChillerStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsChillerStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Barcode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Barcode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecommendedRetailPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecommendedRetailPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypicalWeightPerUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypicalWeightPerUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketingComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarketingComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InternalComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InternalComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomFields)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomFields)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tags)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SearchDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SearchDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValidTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValidTo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

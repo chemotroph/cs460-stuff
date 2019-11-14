@@ -1,0 +1,108 @@
+﻿@model Lab6.ViewModels.StockItemViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <h2>
+        @Html.DisplayFor(model => model.StockItemName)
+    </h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockItemID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockItemID)
+        </dd>
+
+        
+
+
+ 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StockItemSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StockItemSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        
+
+    </dl>
+</div>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <h1 style="font-size:large">
+            <dt>
+                @Html.DisplayNameFor(model => model.ItemSupplier)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ItemSupplier)
+            </dd>
+        </h1>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SupplierPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierSite)
+        </dd>
+
+    </dl>
+</div>
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

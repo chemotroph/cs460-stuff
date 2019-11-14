@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Lab6.Models.StockItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form method="GET">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search Item Names" />
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <th scope="row">
+            @Html.ActionLink(item.StockItemName, "Details", new { id = item.StockItemID }, new { @class = "btn btn-primary btn-lg btn-block", @style = "color:white" })
+            
+        </th>
+        <th scope="row">
+            $ @item.UnitPrice
+        </th>
+    </tr>
+    }
+
+</table>
