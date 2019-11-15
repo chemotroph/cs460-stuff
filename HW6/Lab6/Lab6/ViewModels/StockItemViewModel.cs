@@ -4,12 +4,14 @@ using System.Data.Linq;
 using System.Web;
 using Lab6.Models;
 using Microsoft.SqlServer.Types;
+using Lab6.DAL;
+using Lab6.Controllers;
 
 namespace Lab6.ViewModels
 {
     public class StockItemViewModel
     {
-        public StockItemViewModel(StockItem stockItem)
+        public StockItemViewModel(StockItem stockItem, salesStats stats)
         {
             StockItemID = stockItem.StockItemID;
             StockItemName = stockItem.StockItemName;
@@ -22,9 +24,22 @@ namespace Lab6.ViewModels
             SupplierPhone = stockItem.Supplier.PhoneNumber;
             SupplierSite = stockItem.Supplier.WebsiteURL;
             SupplierContact = stockItem.Supplier.Person.FullName;
-        }
-        public string ItemCity { get; set; }
-        public DateTime ValidSinceDate { get; set; }
+            
+            totalProfit = stats.totalProfit;
+            totalSales = stats.totalSales;
+            customerList = stats.customerList;
+
+            }
+
+        public List<Customer> customerList { get; set; }
+        public decimal totalProfit { get; set; }
+        public decimal totalSales { get; set; }
+            
+
+
+        public int NumSold { get; private set; }
+        public string ItemCity { get; private set; }
+        public DateTime ValidSinceDate { get; private set; }
         public int StockItemID { get; private set; }
         public string StockItemName { get; private set; }
         public string StockItemBrand { get; private set; }
@@ -37,6 +52,8 @@ namespace Lab6.ViewModels
         public string SupplierPhone { get; private set; }
         public string SupplierSite { get; private set; }
         public string SupplierContact { get; private set; }
+
+
 
 
 

@@ -16,7 +16,7 @@ namespace Lab6.Controllers
     {
         private WorldWideImportersContext db = new WorldWideImportersContext();
 
-         
+
         public ActionResult Index()
         {
             var stockItems = db.StockItems.Include(s => s.Color).Include(s => s.PackageType).Include(s => s.PackageType1).Include(s => s.Person).Include(s => s.StockItemHolding).Include(s => s.Supplier);
@@ -39,11 +39,13 @@ namespace Lab6.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             StockItem stockItem = db.StockItems.Find(id);
+            salesStats stats = new salesStats(id, db);
+
             if (stockItem == null)
             {
                 return HttpNotFound();
             }
-            StockItemViewModel viewModel= new StockItemViewModel(stockItem);
+            StockItemViewModel viewModel = new StockItemViewModel(stockItem, stats);
             return View(viewModel);
         }
 
@@ -159,5 +161,58 @@ namespace Lab6.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
+        
+        public class salesStats
+        {
+            public List<Customer> customerList=new List<Customer>();
+            public decimal totalSales;
+            public decimal totalProfit;
+            public decimal totalCost;
+            public int id;
+
+            public salesStats(int? id, WorldWideImportersContext db)   //salesStats takes in the ID of the item, and fetches details about its 
+            {
+                id = id;
+                //Top purchasers, how many items they bought, and gross sales and profits            
+                totalSales = getTotalSales(id, db);    //Query for total sales
+                totalCost = getGrossCost(id, db);      //Query for total cost
+                totalProfit = totalSales - totalCost;
+                //find top 5 customers and their quantity bought
+                customerList = getTop5(id, db);
+            }
+
+            private List<Customer> getTop5(int? id, WorldWideImportersContext db)
+            {
+                List<Customer> customerList = new List<Customer>();
+                var myset= db.StockItemTransactions.Where(x => x.StockItemID == id).GroupBy(x => x.CustomerID).OrderByDescending(x => x.Sum(z => z.Quantity * -1)).Take(5).ToList();
+                customerList.Add(db.Customers.Find(myset[0].First().CustomerID));
+                customerList.Add(db.Customers.Find(myset[1].First().CustomerID));
+                customerList.Add(db.Customers.Find(myset[2].First().CustomerID));
+                customerList.Add(db.Customers.Find(myset[3].First().CustomerID));
+                customerList.Add(db.Customers.Find(myset[4].First().CustomerID));
+                return customerList;
+            }
+
+            private decimal getGrossCost(int? id, WorldWideImportersContext db)
+            {
+                return db.StockItemTransactions.Where(x => x.StockItemID == 10).Sum(x => x.Quantity) * db.StockItems.Find(id).UnitPrice;
+            }
+
+            private decimal getTotalSales(int? id, WorldWideImportersContext db)
+            {
+                return id != null
+                    ? (decimal)(db.StockItemTransactions.Where(x => x.StockItemID == 10).Sum(x => x.Quantity) * db.StockItems.Find(id).RecommendedRetailPrice)
+                    : 0;
+            }
+        }
+
+    
+
+
+
+    
+
 }
