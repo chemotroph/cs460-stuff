@@ -25,8 +25,8 @@ namespace Lab6.ViewModels
             SupplierSite = stockItem.Supplier.WebsiteURL;
             SupplierContact = stockItem.Supplier.Person.FullName;
             
-            totalProfit = stats.totalProfit;
-            totalSales = stats.totalSales;
+            totalProfit = -1*stats.totalProfit;
+            totalSales = -1*stats.totalSales;
             customerList = stats.customerList;
 
             }
