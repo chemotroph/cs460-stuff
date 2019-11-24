@@ -2,9 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>GitHub Profile Viewer</h1>
-    <p class="lead">A tool to summarize a github profile :)</p>
-    
-</div>
+    <div class="jumbotron">
+        <h1 id="title"></h1>
+        <img id="my_image" />
+        <p class="lead" id="bio"></p>
 
+        <div class="col-lg-6">
+            <div id="message"></div>
+            <div id="num"></div>
+            <div id="numbers"></div>
+        </div>
+
+    </div>
+
+
+<div id="repoList"></div>
+
+@section scripts
+{
+    <script src="~/Scripts/main.js"></script>
+}

@@ -25,16 +25,50 @@ namespace Lab7.Controllers
             string username="chemotroph";
 
             string uri = "https://api.github.com/user";
-            Debug.WriteLine(uri);
+           // Debug.WriteLine(uri);
+
+
+            //GET USER DATA
             string data = SendRequest(uri, credential, username);
-            Object obj=null;
+            JObject obj=null;
             try 
             { obj = JObject.Parse(data);}
             catch(ArgumentNullException e)
-            { Debug.WriteLine("Returned JSON was null"); }
+            { Debug.WriteLine("Returned JSON for user data was null"); }
+
+            string user = (string)obj["login"];
+            string url = (string)obj["url"];
+            string avatarurl = (string)obj["avatar_url"];
+            string reposurl = (string)obj["repos_url"];
+            string bio = (string)obj["bio"];
+            int numPublicRepos = (int)obj["public_repos"];
+
+            //GET REPO DATA
+            string repoJsonString = SendRequest(reposurl, credential, username);
+            Debug.WriteLine(repoJsonString);
+            JArray repoJson = null;
+            try
+            { repoJson = JArray.Parse(repoJsonString); }
+            catch (ArgumentNullException e)
+            { Debug.WriteLine("Returned JSON for repo List data was null"); }
+
+            List<string> repoNameList = new List<string>();
+            List<string> repoCommitsUrlList = new List<string>();
             
-            Debug.WriteLine(obj);
-            return Json(obj);
+            //Debug.WriteLine("peepeepoopoo");
+            // Debug.WriteLine(repoJson);
+            foreach ( JObject x in repoJson)
+            {
+                repoNameList.Add((string)x["name"]);
+                repoCommitsUrlList.Add((string)x["commits_url"]);
+            }
+            
+            
+
+            var jsonData = new { user, url, avatarurl, reposurl, bio, numPublicRepos, repoNameList, repoCommitsUrlList };
+            Debug.WriteLine(obj["login"]);
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
         private string SendRequest(string uri, string credentials, string username)
@@ -50,6 +84,7 @@ namespace Lab7.Controllers
             {
                 using (WebResponse response = request.GetResponse())
                 {
+                    
                     Stream stream = response.GetResponseStream();
                     StreamReader reader = new StreamReader(stream);
                     jsonString = reader.ReadToEnd();
@@ -61,6 +96,7 @@ namespace Lab7.Controllers
             {
                 Debug.WriteLine("Failed to connect to API");
             }
+            
             return jsonString;
         }
 
@@ -76,7 +112,7 @@ namespace Lab7.Controllers
             {
                 Debug.WriteLine("Credential File not found");
             }
-            Debug.WriteLine(credential);
+           // Debug.WriteLine(credential);
             return credential;
         }
     }

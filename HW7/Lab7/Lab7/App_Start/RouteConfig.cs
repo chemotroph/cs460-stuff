@@ -18,6 +18,13 @@ namespace Lab7
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+
+            routes.MapRoute(
+                name: "api",
+                url: "api/commits",
+                defaults: new { controller = "Home", action = "repos" }
+            );
         }
     }
 }
